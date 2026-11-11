@@ -53,15 +53,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3700657538209248014, guid: 5ab91b88b105e8f4885f0a90b3738878, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8a574f80bb702e44088bd78e601be543, type: 2}
     - target: {fileID: -3612084937427725380, guid: 5ab91b88b105e8f4885f0a90b3738878, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e55e2dc47f7c5f042bf77c653ddd10eb, type: 2}
     - target: {fileID: -643780163201649647, guid: 5ab91b88b105e8f4885f0a90b3738878, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 76f557403c52c1044a397791ada0d1d1, type: 2}
     - target: {fileID: 919132149155446097, guid: 5ab91b88b105e8f4885f0a90b3738878, type: 3}
@@ -69,15 +69,15 @@ PrefabInstance:
       value: FA_N26_LE_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 1844605564615599970, guid: 5ab91b88b105e8f4885f0a90b3738878, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8a574f80bb702e44088bd78e601be543, type: 2}
     - target: {fileID: 3790761168534068086, guid: 5ab91b88b105e8f4885f0a90b3738878, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c187eb6ea71cb6f45aecca3fc4ad0bab, type: 2}
     - target: {fileID: 7644267432561056974, guid: 5ab91b88b105e8f4885f0a90b3738878, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 76f557403c52c1044a397791ada0d1d1, type: 2}
     m_RemovedComponents: []
