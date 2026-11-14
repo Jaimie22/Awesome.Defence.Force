@@ -1,0 +1,31 @@
+~Documentation
+Greetings, we are Public Void Assets
+
+	Here is what you need to know:
+
+	The Fire particles should have no issue working on all pipelines
+
+//	<<<<<IMPORTANT>>>>>	  //
+	1. If you are using this project on the Built-In Render Pipiline you need to:
+	-go to the Materials folder and click the "Albedo" Material
+	-on the top right of the inspector, set the shader to Standard
+	-the prefabs might still look pink because Unity hasn't refreshed them yet(you can reload unity or refresh it), if you take them out to the scene, they will be as they should be
+
+	2. If you are using this project on the Universal Render Pipiline (URP) you need to:
+	-go to the Materials folder and click the "Albedo" Material
+	-on the top right of the inspector, set the shader to URP/Lit or open the Render Pipeline Converter, set it to Built-In to URP, (depending on unity version), initialize the converters, check them and convert them.
+	-the prefabs might still look pink because Unity hasn't refreshed them yet(you can reload unity or refresh it), if you take them out to the scene, they will be as they should be
+
+	2. If you are using this project on High-Definition Render Pipeline (HDRP) you need to:
+	-go to the Materials folder and click the "Albedo" Material
+	-on the top right of the inspector, set the shader to HDRP/Lit or open up the HDRP Wizard to change it for you
+	-while on the material, take the albedo texture from the folder and drag it to the Base Map under Surface inputs
+	-the prefabs might still look pink because Unity hasn't refreshed them yet(you can reload unity or refresh it), if you take them out to the scene, they will be as they should be
+
+
+
+	Hope you have a wonderful time using this asset. :)
+
+	Join our discord for any questions you might have or support that you would need.
+
+	https://discord.gg/Ub37Gss77f
