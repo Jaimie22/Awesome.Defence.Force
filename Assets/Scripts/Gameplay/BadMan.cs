@@ -21,6 +21,10 @@ public class BadMan : Alien
         base.Awake();
         maxHealth = 5; moveRange = 4;
         coverBonus = 2f;   // this is how much it wants to be in cover higher is better
+
+        // NEW: BadMan likes to stay 8 tiles away, so it needs to be able to shoot that far,
+        // otherwise it would never get a shot off
+        attackRange = 9;
     }
 
     protected override Unit ChooseTarget()

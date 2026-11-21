@@ -19,6 +19,10 @@ public abstract class Alien : Unit
     [Tooltip("Extra priority for standing on a cover tile. Keep small to just break ties, raise it to make aliens cover-hungry.")]
     public float coverBonus = 0.5f;
 
+    // NEW: a short pause before and after an alien shoots, so the player can follow what's happening
+    [Tooltip("Pause (seconds) before and after an alien shoots, so the player can follow the action.")]
+    public float shotDelay = 0.4f;
+
     protected virtual void Awake() => team = Team.Alien;
 
     public IEnumerator TakeTurn()
@@ -44,6 +48,15 @@ public abstract class Alien : Unit
             var path = Gridman.Instance.BuildPath(parents, GridPos, bestTile);
             yield return StartCoroutine(MoveAlong(path));
         }
+
+        // NEW: after moving, shoot whoever we've got the best chance of hitting (if anyone's in sight)
+        Unit shotTarget = ChooseShotTarget();
+        if (shotTarget != null)
+        {
+            yield return new WaitForSeconds(shotDelay);
+            Shoot(shotTarget);
+            yield return new WaitForSeconds(shotDelay);
+        }
     }
 
 
@@ -56,6 +69,21 @@ public abstract class Alien : Unit
         {
             int distance = Gridman.Distance(GridPos, playerUnit.GridPos);
             if (distance < bestDist) { bestDist = distance; best = playerUnit; }
+        }
+        return best;
+    }
+
+    // NEW: picks who to shoot: the soldier we can see, in range, with the best chance to hit
+    protected virtual Unit ChooseShotTarget()
+    {
+        Unit best = null;
+        int bestChance = -1;
+        foreach (var playerUnit in GameManager.Instance.PlayerUnits)
+        {
+            if (!CanShoot(playerUnit)) continue;
+
+            int chance = HitChance(playerUnit);
+            if (chance > bestChance) { bestChance = chance; best = playerUnit; }
         }
         return best;
     }

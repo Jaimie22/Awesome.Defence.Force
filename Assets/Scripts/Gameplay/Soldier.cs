@@ -12,6 +12,10 @@ public class Soldier : Unit
     [Header("Attack")]
     public int attackActionPointCost = 1;
 
+    // NEW: like XCOM, firing uses up the rest of this soldier's turn. Untick to allow several shots.
+    [Tooltip("If ticked, shooting uses up all of this soldier's remaining AP (like XCOM).")]
+    public bool shootingEndsTurn = true;
+
     private Camera mainCamera;
     private bool isMoving = false;
     public bool IsMoving => isMoving;
@@ -147,24 +151,41 @@ public class Soldier : Unit
 
     //  Attacking 
     // in range AND enough AP left, the highlights and the targeting line both use this
+    // NEW: also checks line of sight, so you can't shoot through walls
     public bool CanAttack(Alien target) =>
-        InAttackRange(target) && CanSpendActionPoints(attackActionPointCost);
+        CanShoot(target) && CanSpendActionPoints(attackActionPointCost);
 
     void TryAttack(Alien target)
     {
         if (!InAttackRange(target))
         {
+            LastCombatMessage = "Out of range!";
             Debug.Log("Alien is out of attack range!");
+            return;
+        }
+
+        // NEW: can't shoot through walls
+        if (!HasLineOfSight(target))
+        {
+            LastCombatMessage = "No line of sight - something's in the way!";
+            Debug.Log(LastCombatMessage);
             return;
         }
 
         if (!SpendActionPoints(attackActionPointCost))
         {
+            LastCombatMessage = "Not enough AP!";
             Debug.Log("Not enough Action Points!");
             return;
         }
 
-        Attack(target);
+        // NEW: roll to hit, instead of always hitting
+        Shoot(target);
+
+        // NEW: firing ends this soldier's turn (if ticked)
+        if (shootingEndsTurn)
+            SpendActionPoints(CurrentActionPoints);
+
         RefreshHighlights();
     }
 }

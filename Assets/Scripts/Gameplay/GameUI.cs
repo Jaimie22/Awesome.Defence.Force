@@ -9,6 +9,9 @@ public class GameUI : MonoBehaviour
     public TMP_Text statusText;
     public Button endTurnButton;
 
+    // NEW: shows what just happened in the fight, e.g. "BadMan shoots Soldier (40%) - MISSED!"
+    public TMP_Text combatText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +36,10 @@ public class GameUI : MonoBehaviour
                 "Turn " + GameManager.Instance.TurnNumber +
                 " - " + GameManager.Instance.State;
         }
+
+        // NEW: show the latest combat message
+        if (combatText != null)
+            combatText.text = Unit.LastCombatMessage;
 
         // space does the same as the button i want to make more hotkeys but we need a start 
         if (Input.GetKeyDown(KeyCode.Space))
